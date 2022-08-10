@@ -493,6 +493,87 @@ UPDATE BOARD SET USE_YN = 'N' WHERE BOARD_ID = '1';
 - NULL값과의 비교연산은(=, >, >=, <, <=)은 FALSE를 리턴
 - 특정 값보다 크다 작다라고 표현할 수 없다.
 
+```
+oracle 공백입력 -> NULL로 저장됨
+SQL Server 공백입력 -> 공백으로 저장됨
+```
+
+### 📑 비교 연산자
+![image](https://user-images.githubusercontent.com/87464750/187025309-dd7dfa23-d581-495a-b974-c2779f6f7ef6.png)
+
+### 📑 SQL 연산자
+![image](https://user-images.githubusercontent.com/87464750/187025358-65404ef9-fd4f-447d-bebb-f53d0d614a41.png)
+
+### 📑 논리 연산자
+![image](https://user-images.githubusercontent.com/87464750/187025367-e8673937-5a17-4166-a0b9-4fc103135171.png)
+
+### 📑 부정 연산자
+![image](https://user-images.githubusercontent.com/87464750/187025389-cddc0e69-b772-4e5b-930d-6317a7727cf3.png)
+
+## 함수
+### 📑 내장함수
+- 함수의 입력 행수에 따라 단일행 함수와 다중행 함수로 구분할 수 있다.
+- 단일행 함수는 SELECT, WHERE, ORDER BY, UPDATE의 SET절에 사용이 가능하다.
+- 1:M 관계의 두 테이블을 조인할 경우 M쪽에 다중행이 출력되므로 단일행 함수는 사용가능하다.
+- 다중행 함수는 단일행 함수와 다르게 여러 개의 인수가 입력되어도 단일 값만을 반환한다.
+
+### 📑 단일행 함수
+#### ✏ 문자형 함수
+![image](https://user-images.githubusercontent.com/87464750/187026040-0a14103b-ea79-4b2d-a6de-9732ad4c4ce7.png)
+
+#### ✏ 숫자형 함수
+![image](https://user-images.githubusercontent.com/87464750/187026053-5e519e87-6cf5-442b-8036-b7c201f3e0bd.png)
+
+#### ✏ 날짜형 함수
+![image](https://user-images.githubusercontent.com/87464750/187026067-e7324cb9-4e67-43e5-b514-ccde76c1b799.png)
+
+- 오라클은 세기, 년, 월, 일, 시, 분, 초 형식의 날짜를 내부적으로는 숫자 형태로 저장
+```
+DATE + NUMBER
+DATE - NUMBER
+DATE + NUMBER/24
+DATE1 - DATE2
+```
+> EX) 1(일)/24(시간)/(60/10)(분) = 10분
+
+#### ✏ 반환형 함수
+![image](https://user-images.githubusercontent.com/87464750/187026123-882f2767-adfe-4f0b-ac09-b77e64720e02.png)
+
+#### CASE
+![image](https://user-images.githubusercontent.com/87464750/187026425-1cf1022c-6164-4daa-aa97-0c556173c215.png)
+
+EX)
+```
+[SERCAHED_CASE_EXPRESSION 문장 사례]
+SELECT LOC, 
+    CASE WHEN LOC = 'NEW YORK' THEN `EAST`
+        ELSE 'ETC'
+    END as AREA
+FROM DERT;
+
+//동일한 기능을 다르게 표현
+
+[SIMPLE_CASE_EXPRESSION 문장 사례]
+SELECT LOC, 
+    CASE LOC WHEN 'NEW YORK' THEN 'EAST'
+        ELSE 'ETC'
+    END as AREA
+FROM DERT;
+//= 조건만 사용하는 경우 더 간단하게 표현이 가능하다.
+```
+
+#### ✏ NULL 관련 함수
+![image](https://user-images.githubusercontent.com/87464750/187026145-c8168e30-50b4-4a36-b01d-a8d1a80f1322.png)
+
+### 📑 집계함수(그룹함수)
+- 그룹함수들은 NULL은 대상에서 제외.
+
+![image](https://user-images.githubusercontent.com/87464750/187027032-597f54be-8889-4816-805b-2982a01a6a8b.png)
+
+
+
+
+
  </div>
 </details>
 
