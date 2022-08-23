@@ -295,10 +295,10 @@
 <summary> ✏ SQL 기본 </summary>
 <div markdown="1">
   
-- As-Is: 비절차적 데이터 조작어(DML)은 사용자가 무슨(What) 데이터를 원하는 지만을 명세함.
-- To-Be: 비절차적 데이터 조작어(DML)은 사용자가 무슨(What) 데이터를 원하는 지만을 명세하지만, 절자적 데이터 조작어는 어떻게(How) 데이터를 접근해야 하는지 명세한다.
+- `As-Is`: 비절차적 데이터 조작어(DML)은 사용자가 무슨(What) 데이터를 원하는 지만을 명세함.
+- `To-Be`: 비절차적 데이터 조작어(DML)은 사용자가 무슨(What) 데이터를 원하는 지만을 명세하지만, 절자적 데이터 조작어는 어떻게(How) 데이터를 접근해야 하는지 명세한다.
 - 절차적 데이터 조작어
-    - PL/SQL(오라클), T-SQL(SQL Server)등이 있다.
+    - `PL/SQL(오라클)`, `T-SQL(SQL Server)`등이 있다.
 
  </div>
 </details>
@@ -313,12 +313,3 @@
  </div>
 </details>
 
-<details>
-
-<summary> ✏ SQL 최적화 기본원리 </summary>
-<div markdown="1">
-  
-
-
- </div>
-</details>
