@@ -306,6 +306,7 @@
 #### 자주 쓰이는 데이터 유형
 ![image](https://user-images.githubusercontent.com/87464750/186330175-88fc5861-3b63-4437-a620-0e753fe23fd3.png)
 
+## ✏ DDL
 ### 📑 제약조건
 - 제약조건이랑 사용자가 원하는 조건의 데이터만 유지하기 위한 즉, 데이터의 무결성을 유지하기 위한 데이터베이스의 보편적인 방법으로 테이블의 특정 칼럼에 설정하는 제약
 
@@ -315,9 +316,9 @@
 #### ✔ 제약조건 지정
 `DBMS는 Oracle`
 - 테이블 생성시
-    - ex) `CONSTRAINT` constraint_name `PRIMARY KEY (col_1, col_2,..)`
+    - ex) `CONSTRAINT` constraint_name `PRIMARY KEY (col_1, col_2,..);`
 - 테이블 생성후
-    - ex) `ALTER TABLE` table_name `ADD CONSTRAINT` constraint_name `PRIMARY KEY (col_1, col_2,..)`
+    - ex) `ALTER TABLE` table_name `ADD CONSTRAINT` constraint_name `PRIMARY KEY (col_1, col_2,..);`
 
 #### NULL 의미
 - 공백이나 숫자 0과는 전혀 다른 값이며, 조건에 맞는 데이터가 없을 때의 공집합과도 다르다.
@@ -347,9 +348,9 @@
 ### 📑 ALTER TABLE
 #### 테이블 칼럼에 대한 정의변경
 - `Oracle`
-    - ALTER TABLE 테이블명 MODIFY (칼럼명1 데이터유형, 칼럼2 데이터 유형, ..)
+    - ALTER TABLE 테이블명 MODIFY (칼럼명1 데이터유형, 칼럼2 데이터 유형, ..);
 - `SQL Server`
-- ALTER TABLE 테이블명 ALTER (칼럼명1 데이터유형, 칼럼2 데이터 유형, ..)
+- ALTER TABLE 테이블명 ALTER (칼럼명1 데이터유형, 칼럼2 데이터 유형, ..);
 
 `SQL server`
 - 하나의 명령으로 동시작업 불가능
@@ -361,9 +362,85 @@ ALTER TABLE 기관분류 ALTER COLUMN 분류명 VARCHAR(30) NOT NULL;
 ALTER TABLE 기관분류 ALTER COLUMN 등록일자 DATE NOT NULL;
 ```
 
+#### 테이블의 불필요한 칼럼 삭제
+- 데이터가 있거나 없거나 모두 삭제 가능.
+- 한 번에 하나의 칼럼만 삭제 가능, 칼럼 삭제 후 최소 하나 이상의 칼럼이 테이블에 존재해야 한다.
+- 삭제된 칼럼은 복구 불가능.
+`ALTER TABLE 테이블명 DROP COLLUM 삭제할 칼럼명;`
 
 
+### 📑 RENAME TABLE
+`RENAME 변경전 테이블명 TO 변경 후 테이블명;`
+- SQL Server에서는 sp_rename 이용
+    - `sp_rename 변경전 테이블명, 변경후 테이블명;`
 
+### 📑 FOREIGN KEY에 의한 Actions
+- 부모 테이블의 행이 삭제될때 자식 테이블 행의 action
+`ON DELETE`
+
+| action | 설명|    
+| :---: | :----: |    
+|CASCADE| 부모 삭제시 자식도 삭제|
+|SET NULL| 부모 삭제시 자식은 NULL로 설정|
+|SET DEFAULT| 부모 삭제시 자식은 기본값|
+|RESTRICT|자식이 없는 경우만 부모삭제|
+
+- 자식 테이블의 행이 입력될때 부모 테이블 행의 action
+`ON INSERT`
+
+| action | 설명|    
+| :---: | :----: |    
+|AUTOMATIC|q부모가 없을때, 부모입력후 자식입력|
+|SET NULL|부모가 없는 경우, 자식의 FK NULL|
+|SET DEFAULT|부모가 없는 경우, FK를 기본값으로|
+|DEPENDENT|부모의 PK가 있는 경우만 자식 입력|
+
+### 📑 TRUNCATE TABLE
+- 테이블 자체가 삭제되는 것이 아니고, 해당 테이블에 들어있던 모든 행들이 제거되고 저장 공간을 재사용 가능하도록 해제한다.
+- 테이블 구조를 삭제하기 위해서는 DROP TABLE 실행.
+- 정상적인 복구가 불가능하다.
+- `TRUNCATE TABLE 테이블명;
+
+## ✏ DML
+### 📑 INSERT, UPDATE
+#### 테이블에 데이터를 입력하는 두 가지 유형
+- 해당 칼럼의 데이터 유형이 CHAR나 VARCHAR 등 문자 유형일 경우 '로 입력할 값을 입력한다/
+- 숫자일 경우 '을 붙이지 않아야 한다.
+- `INSERT INTO 테이블명 (COLLUM LIST) VALUES (COLLUM_LIST에 넣을 VALUE_LIST);`
+    - 테이블으 칼럼을 정의할 수 있는데, 이때 칼럼의 순서는 테이블의 칼럼 순서와 매치할 필요가 없다.
+    - 정의하지 않은 칼럼은 NULL값이 입력된다.
+    - 단 Primary Key나 Not NULL로 지정된 칼럼은 NULL이 허용되지 않는다.
+- `INSERT INTO 테이블명 VALUES (전체 COLLUM에 넣을 VALUE_LIST);`
+    - 굳이 COLUM_LIST를 언급할 필요가 없다.
+    - 칼럼의 순서대로 빠짐없이 데이터가 입력되어야 한다.
+#### 입력된 데이터의 수정
+- `UPDATE 테이블명 SET 수정되어야 할 칼럼명 =  수정되기를 원하는 새로운 값`
+ex)    
+![image](https://user-images.githubusercontent.com/87464750/186388375-13cc4b4e-f1c1-4e4a-bbef-255c9f60e725.png)
+
+- 가능한 SQL 문장
+```
+INSERT INTO BOARD VALUES (1, 'Q&A', SYSDATE, 'Q&A 게시판');
+UPDATE BOARD SET USE_YN = 'N' WHERE BOARD_ID = '1';
+```
+### DELETE
+- 테이블의 정보가 필요없게 되었을 경우 데이터 삭제를 수행
+- WHERE 절을 사용하지 않는다면 테이블의 전체 데이터가 삭제된다.
+- 삭제된 데이터를 로그로 저장.
+- `DELETE FROM 삭제할 테이블명`
+
+### 📑 SELECT
+#### 테이블에 입력된 데이터 조회
+- `SELECT [ALL/DISTICT] 보고 싶은 칼럼명, 보고 싶은 칼럼명,.. FROM 해당 칼럼들이 있는 테이블명;`
+
+#### ALL
+- Default 옵션이므로 별도로 표시하지 않아도 된다.
+- 중복된 데이터가 있어도 모두 출력한다.
+
+#### DISTINCT
+- 중복된 데이터가 있는 경우 1건으로 처리해서 출력한다.
+
+##  TCL
 
  </div>
 </details>
