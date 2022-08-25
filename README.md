@@ -295,10 +295,75 @@
 <summary> ✏ SQL 기본 </summary>
 <div markdown="1">
   
+### 📑 SQL 명령어 종류
+![image](https://user-images.githubusercontent.com/87464750/186324333-b23af410-22b6-4c1f-8020-960002b903e8.png)
+
 - `As-Is`: 비절차적 데이터 조작어(DML)은 사용자가 무슨(What) 데이터를 원하는 지만을 명세함.
 - `To-Be`: 비절차적 데이터 조작어(DML)은 사용자가 무슨(What) 데이터를 원하는 지만을 명세하지만, 절자적 데이터 조작어는 어떻게(How) 데이터를 접근해야 하는지 명세한다.
 - 절차적 데이터 조작어
     - `PL/SQL(오라클)`, `T-SQL(SQL Server)`등이 있다.
+    
+#### 자주 쓰이는 데이터 유형
+![image](https://user-images.githubusercontent.com/87464750/186330175-88fc5861-3b63-4437-a620-0e753fe23fd3.png)
+
+### 📑 제약조건
+- 제약조건이랑 사용자가 원하는 조건의 데이터만 유지하기 위한 즉, 데이터의 무결성을 유지하기 위한 데이터베이스의 보편적인 방법으로 테이블의 특정 칼럼에 설정하는 제약
+
+#### 제약조건의 종류
+![image](https://user-images.githubusercontent.com/87464750/186324855-cab7050d-d827-41cf-b0ba-cef8d627bac8.png)
+
+#### ✔ 제약조건 지정
+`DBMS는 Oracle`
+- 테이블 생성시
+    - ex) `CONSTRAINT` constraint_name `PRIMARY KEY (col_1, col_2,..)`
+- 테이블 생성후
+    - ex) `ALTER TABLE` table_name `ADD CONSTRAINT` constraint_name `PRIMARY KEY (col_1, col_2,..)`
+
+#### NULL 의미
+- 공백이나 숫자 0과는 전혀 다른 값이며, 조건에 맞는 데이터가 없을 때의 공집합과도 다르다.
+- NULL은 아직 정의되지 않은 미지의 값이나 현재 데이터를 입력하지 못하는 경우를 의미한다.
+
+#### DEFAULT 의미
+- 데이터 입력 시에 칼럼의 값이 지정되어 있지 않을 경우 이 값을 사전에 설정할 수 있다.
+- 데이터 입력시 명시된 값을 지정하지 않은 경우에 NULL 값이 입력된다.
+- 값을 정의했다면 해당 칼럼에 NULL 값이 입력되지 않고 사전에 정의된 기본값이 자동으로 입력된다.
+
+#### 인덱스 지정
+- CREATE INDEX 인덱스 이름 ON 테이블명 (칼럼명);
+
+### 📑 테이블 생성
+- 테이블명은 객체를 의미할 있는 적절한 이름을 사용한다.
+    - 가능한 단수형을 권고한다.
+- 테이블 명은 다른 테이블의 이름과 중복되지 않아야 한다.
+- 한 테이블 내에선는 칼럼명이 중복되게 지정될 수 없다.
+- 테이블 이름을 지정하고 각 칼럼들은 괄호 "()" 로 묶어 지정한다.
+- 각 칼럼들은 콤마로 구분되고 , 테이블 생성문의 끝은 항상 세메콜론으로 끝난다.
+- 칼럼에 대해서는 다른 테이블까지 고려하여 데이터베이스 내에서는 일관성 있게 사용하는 것이 좋다.(데이터 표준화 관점)
+- 칼럼 뒤에 데이터 유형은 꼭 지정되어야 한다.
+- 테이블명과 칼럼명은 반드시 문자로 시작해야 하고, 벤더별로 길이에 대한 한계가 있다.
+- 벤더에서 사전에 정의한 예약어는 쓸 수 없다.
+- A-Z, a-z, 0-9, _, $, # 문자만 허용된다.
+
+### 📑 ALTER TABLE
+#### 테이블 칼럼에 대한 정의변경
+- `Oracle`
+    - ALTER TABLE 테이블명 MODIFY (칼럼명1 데이터유형, 칼럼2 데이터 유형, ..)
+- `SQL Server`
+- ALTER TABLE 테이블명 ALTER (칼럼명1 데이터유형, 칼럼2 데이터 유형, ..)
+
+`SQL server`
+- 하나의 명령으로 동시작업 불가능
+
+![image](https://user-images.githubusercontent.com/87464750/186328181-c08fd927-92c0-48ec-ad60-2efa4bf6d4d8.png)
+
+```
+ALTER TABLE 기관분류 ALTER COLUMN 분류명 VARCHAR(30) NOT NULL;
+ALTER TABLE 기관분류 ALTER COLUMN 등록일자 DATE NOT NULL;
+```
+
+
+
+
 
  </div>
 </details>
