@@ -26,10 +26,11 @@
 - 사용자가 처리하는 프로세스 혹은 이와 관련된 프로그램과 테이블의 연계성을 높이는 것은 데이터 모델이 업무변경에 대해 취약하게 만드는 단점에 해당된다.
 
 ### 개념-논리-물리데이터 모델
-![image](https://user-images.githubusercontent.com/87464750/184346183-5b440bb1-a072-4e26-848f-45739acd34eb.png)
+<img src="https://user-images.githubusercontent.com/87464750/184346183-5b440bb1-a072-4e26-848f-45739acd34eb.png" width="700" height="300"/>
+
 
 ### 데이터독립성 구성요소
-![image](https://user-images.githubusercontent.com/87464750/184346611-daee7396-3bca-4dca-b79a-87c97a926654.png)
+<img src="https://user-images.githubusercontent.com/87464750/184346611-daee7396-3bca-4dca-b79a-87c97a926654.png" width="700" height="300"/>
 
 ### 📑 ERD
 - 1976년 피터첸에 의해 Entity-Relationship Model이라는 표기법이 만들어졌다
@@ -147,13 +148,14 @@
 
 ### 📑 식별자
 #### 주식별자 특징
-![image](https://user-images.githubusercontent.com/87464750/184355369-e1c9e0de-4eb9-4204-a6ed-41538eff2204.png)
+<img src="https://user-images.githubusercontent.com/87464750/184355369-e1c9e0de-4eb9-4204-a6ed-41538eff2204.png" width="700" height="300"/>
 
 #### 식별자의 분류체계
-![image](https://user-images.githubusercontent.com/87464750/184355443-b8db8119-38ad-4d23-9e3c-4185ea3b552c.png)
+<img src="https://user-images.githubusercontent.com/87464750/184355443-b8db8119-38ad-4d23-9e3c-4185ea3b552c.png" width="700" height="300"/>
+
 
 #### 식별자와 비식별자관계 비교
-![image](https://user-images.githubusercontent.com/87464750/184356002-8344b558-2e5c-482d-9cef-305ed66e55eb.png)
+<img src="https://user-images.githubusercontent.com/87464750/184356002-8344b558-2e5c-482d-9cef-305ed66e55eb.png" width="700" height="300"/>
 
 
 
@@ -199,11 +201,10 @@
         
         
 #### 테이블 반졍규화
-![image](https://user-images.githubusercontent.com/87464750/185892498-36540384-2e99-4655-8ffd-01c23eafa5e3.png)
+<img src="https://user-images.githubusercontent.com/87464750/185892498-36540384-2e99-4655-8ffd-01c23eafa5e3.png" width="700" height="400"/>
 
 #### 칼럼의 반정규화
-![image](https://user-images.githubusercontent.com/87464750/185892556-f92659e6-c0df-4c3f-9077-d9c4758e97c9.png)
-
+<img src="https://user-images.githubusercontent.com/87464750/185892556-f92659e6-c0df-4c3f-9077-d9c4758e97c9.png" width="700" height="300"/>
 
 
 #### 반정규화 절차
@@ -251,7 +252,7 @@
 - 슈퍼타입+서브타입에 대해 발생되는 트랜잭션에 대해서는 슈퍼타입+서브타입 테이블로 구성
 - 전체를 하나로 묶어 트랜잭션이 발생할때는 하나의 테이블로 구성
 
-![image](https://user-images.githubusercontent.com/87464750/185896633-27291fcf-2efe-4d69-a19e-4f04d74b0994.png)
+<img src="https://user-images.githubusercontent.com/87464750/185896633-27291fcf-2efe-4d69-a19e-4f04d74b0994.png" width="700" height="300"/>
 
 #### 📑 인덱스 특성을 고려한 PK/FK 데이터베이스 성능향상
 - PK 순서를 결정하는 기준을 인덱스 정럴규조를 이해한 상태에서 인덱스를 효율적으로 이용할 수 있도록 PK 순서를 지정해야한다.
@@ -296,7 +297,7 @@
 <div markdown="1">
   
 ### 📑 SQL 명령어 종류
-![image](https://user-images.githubusercontent.com/87464750/186324333-b23af410-22b6-4c1f-8020-960002b903e8.png)
+<img src="https://user-images.githubusercontent.com/87464750/186324333-b23af410-22b6-4c1f-8020-960002b903e8.png" width="700" height="300"/>
 
 - `As-Is`: 비절차적 데이터 조작어(DML)은 사용자가 무슨(What) 데이터를 원하는 지만을 명세함.
 - `To-Be`: 비절차적 데이터 조작어(DML)은 사용자가 무슨(What) 데이터를 원하는 지만을 명세하지만, 절자적 데이터 조작어는 어떻게(How) 데이터를 접근해야 하는지 명세한다.
@@ -304,14 +305,14 @@
     - `PL/SQL(오라클)`, `T-SQL(SQL Server)`등이 있다.
     
 #### 자주 쓰이는 데이터 유형
-![image](https://user-images.githubusercontent.com/87464750/186330175-88fc5861-3b63-4437-a620-0e753fe23fd3.png)
+<img src="https://user-images.githubusercontent.com/87464750/186330175-88fc5861-3b63-4437-a620-0e753fe23fd3.png" width="700" height="300"/>
 
 ## ✏ DDL
 ### 📑 제약조건
 - 제약조건이랑 사용자가 원하는 조건의 데이터만 유지하기 위한 즉, 데이터의 무결성을 유지하기 위한 데이터베이스의 보편적인 방법으로 테이블의 특정 칼럼에 설정하는 제약
 
 #### 제약조건의 종류
-![image](https://user-images.githubusercontent.com/87464750/186324855-cab7050d-d827-41cf-b0ba-cef8d627bac8.png)
+<img src="https://user-images.githubusercontent.com/87464750/186324855-cab7050d-d827-41cf-b0ba-cef8d627bac8.png" width="700" height="300"/>
 
 #### ✔ 제약조건 지정
 `DBMS는 Oracle`
@@ -355,7 +356,7 @@
 `SQL server`
 - 하나의 명령으로 동시작업 불가능
 
-![image](https://user-images.githubusercontent.com/87464750/186328181-c08fd927-92c0-48ec-ad60-2efa4bf6d4d8.png)
+<img src="https://user-images.githubusercontent.com/87464750/186328181-c08fd927-92c0-48ec-ad60-2efa4bf6d4d8.png" width="700" height="300"/>
 
 ```
 ALTER TABLE 기관분류 ALTER COLUMN 분류명 VARCHAR(30) NOT NULL;
@@ -416,7 +417,7 @@ ALTER TABLE 기관분류 ALTER COLUMN 등록일자 DATE NOT NULL;
 #### 입력된 데이터의 수정
 - `UPDATE 테이블명 SET 수정되어야 할 칼럼명 =  수정되기를 원하는 새로운 값`
 ex)    
-![image](https://user-images.githubusercontent.com/87464750/186388375-13cc4b4e-f1c1-4e4a-bbef-255c9f60e725.png)
+<img src="https://user-images.githubusercontent.com/87464750/186388375-13cc4b4e-f1c1-4e4a-bbef-255c9f60e725.png" width="700" height="300"/>
 
 - 가능한 SQL 문장
 ```
@@ -486,7 +487,7 @@ UPDATE BOARD SET USE_YN = 'N' WHERE BOARD_ID = '1';
     
 ### 📑 연산자
 #### 우선순위
-![image](https://user-images.githubusercontent.com/87464750/186918511-4a28a253-7997-4fdb-89bf-e4919495ca33.png)
+<img src="https://user-images.githubusercontent.com/87464750/186918511-4a28a253-7997-4fdb-89bf-e4919495ca33.png width="700" height="300"/>
 
 #### NULL 연산
 - NULL값과의 연산은(+,-,*,/ 등)은 NULL값을 리턴
@@ -499,16 +500,16 @@ SQL Server 공백입력 -> 공백으로 저장됨
 ```
 
 ### 📑 비교 연산자
-![image](https://user-images.githubusercontent.com/87464750/187025309-dd7dfa23-d581-495a-b974-c2779f6f7ef6.png)
+<img src="https://user-images.githubusercontent.com/87464750/187025309-dd7dfa23-d581-495a-b974-c2779f6f7ef6.png" width="700" height="200"/>
 
 ### 📑 SQL 연산자
-![image](https://user-images.githubusercontent.com/87464750/187025358-65404ef9-fd4f-447d-bebb-f53d0d614a41.png)
+<img src="https://user-images.githubusercontent.com/87464750/187025358-65404ef9-fd4f-447d-bebb-f53d0d614a41.png" width="700" height="200"/>
 
 ### 📑 논리 연산자
-![image](https://user-images.githubusercontent.com/87464750/187025367-e8673937-5a17-4166-a0b9-4fc103135171.png)
+<img src="https://user-images.githubusercontent.com/87464750/187025367-e8673937-5a17-4166-a0b9-4fc103135171.png" width="700" height="200"/>
 
 ### 📑 부정 연산자
-![image](https://user-images.githubusercontent.com/87464750/187025389-cddc0e69-b772-4e5b-930d-6317a7727cf3.png)
+<img src="https://user-images.githubusercontent.com/87464750/187025389-cddc0e69-b772-4e5b-930d-6317a7727cf3.png" width="700" height="300"/>
 
 ## 함수
 ### 📑 내장함수
