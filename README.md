@@ -589,6 +589,8 @@ FROM DERT;
 - `SELECT 칼럼명[ALIAS 명] FROM 테이블명 [WHERE 조건식] [GROUP BY 칼럼이나 표현식] [HAVING 그룹 조건식] [ORDER BY 칼럼이나 표현식[ASC 또는 DESC]];`
 - ASC: 조회한 데이터를 오름차순으로 정렬한다.(기본값이므로 생략 가능)
 - DESC: 조회한 데이터를 내림차순으로 정렬한다.
+- ORGER BY 1,2
+    - 칼럼1을 정렬하고 우선순위가 동일한 경우 2의 칼럼으로 비교
 
 #### 특징
 - 기본적인 정렬 순서는 오름차순이다.
@@ -608,7 +610,201 @@ FROM DERT;
 <summary> ✏ SQL 활용 </summary>
 <div markdown="1">
   
+### 📑 순수 관계 연산자
+- SELECT
+- JOIN
+- DIVIDE
+- PROJECT
 
+### 📑 FROM 절의 JOIN 형태
+- INNER JOIN
+- NATURAL JOIN
+- USING 조건절
+- ON 조건절
+    - USING(조인하고자 하는 칼럼의 이름만 적기)
+- CROSS JOIN
+- OUTER JOIN(LEFT, RIGHT, FULL)
+
+#### ✏ INNER JOIN
+- JOIN 조건에서 동일한 값이 있는 행만 반환된다.
+
+#### ✏ CROSS JOIN
+- 테이블 간 JOIN 조건이 없는 경우 생길 수 있는 모든 데이터의 조합을 말한다.
+- 결과는 양쪽 집합의 M*N 건의 데이터 조합이 발생된다.
+- Cartesian Product
+    - 조인 조건이 없는 경우 발생
+    
+#### ✏ LEFT(RIGHT) OUTER JOIN
+- 조인 수행시 먼저 표기된 좌측 테이블에 해당하는 데이터를 먼저 읽은 후, 나중에 표기된 우축 테이블에서 JOIN 대상 데이터를 읽어 온다.
+- JOIN 칼럼에서 같은 값이 있을 때 그 해당 데이터를 가져오고, B의 JOIN 칼럼에서 같은 값이 없는 경우에는 B 테이블에서 가져오는 칼럼들은 NULL값으로 채움.
+- RIGHT는 기준이 오른쪽
+
+#### ✏ FULL OUTER JOIN
+- 조인 수행시 좌측, 우측 테이블의 모든 데이터를 읽어 JOIN하여 결과를 생성.
+
+#### 💡 JOIN 예시
+- `문제`
+![image](https://user-images.githubusercontent.com/87464750/188260260-660a7073-3a27-4a67-bf0b-6561c94b999c.png)
+
+- `LEFT`
+![image](https://user-images.githubusercontent.com/87464750/188260303-a04abfc2-add8-4b77-8150-c5a3538cf5be.png)
+
+- `RIGHT`
+![image](https://user-images.githubusercontent.com/87464750/188260340-72c85da5-8ef3-4681-82c6-5141fef4e1ce.png)
+
+- `FULL`(합집합과 같아)
+![image](https://user-images.githubusercontent.com/87464750/188260360-46d70909-9e68-42d1-be19-dfdf1dafde11.png)
+
+
+### 📑 집합 연산자의 종류
+![image](https://user-images.githubusercontent.com/87464750/188260427-7601b32a-9fc7-41f7-a6a3-4d70bd7bc9e3.png)
+
+## ❗ 계층형 질의
+#### 📑 PRIOR
+- CONNECT BY절에 사용되며, 현재 읽은 칼럼을 지정한다.
+- PRIOR 자식 = 부모 형태를 사용하면 계층 구조에서 부모 데이터에서 자식 데이터(부모->자식)방향으로 전개하는 순방향 전개.
+- PRIOR 부모 = 자식 형태를 사용하면 계층 구조에서 부모 데이터에서 자식 데이터(자식->)방향으로 전개하는 역방향 전개.
+
+#### START WITH
+- 계층 구조 전개의 시작 위치를 지정하는 구문.
+    - 즉, 루트 데이터를 지정한다.
+
+#### ORDER SIBLINGS BY
+- 형제 노드 사이에서 정렬을 수행한다.
+
+#### 계층형 질의
+- SQL Server에서의 계층형 질의문은 CTE를 재귀 호출함으로써 계층 구조를 전개한다.
+- SQL Server에서의 계층형 질의문은 앵커 멤러르 실행하여 기본 결과 집합을 만들고 이후 재귀 멤버를 지속적으로 실행한다.
+- 오라클 계층형 질의문에서 WHERE절은 모든 전개를 진행한 이후 필터 조건으로서 조건을 만족하는 데이터만을 추출하는데 활용된다.
+- 오라클 계층형 질의문에서 PRIOR 키워느든 CONNECT BY, SERLECT, WHERE 절에서 사용할 수 있다.
+
+#### 계층형 질의에서 사용되는 가상 칼럼
+![image](https://user-images.githubusercontent.com/87464750/188268021-05562f55-4d09-49d2-9434-680c55350a64.png)
+
+#### 계층형 질의에서 사용되는 함수
+![image](https://user-images.githubusercontent.com/87464750/188268011-432dd375-3b50-47fd-aac3-30e781751e68.png)
+
+## ❗ 서브쿼리 
+
+### 📑 반환되는 데이터의 형태에 따른 서브쿼리 분류
+![image](https://user-images.githubusercontent.com/87464750/188260607-4fa3e245-a92d-45a6-bd67-80a4c8a640be.png)
+
+#### 다중행 비교 연산자
+![image](https://user-images.githubusercontent.com/87464750/188260639-00aba3d4-46ec-4a35-81f1-27a5abaf0817.png)
+
+- 다중행 서브쿼리 비교 연산자는 단일행 서브쿼리의 비교 연산자로도 사용할 수 있다.
+    - 다중행이 단일행 서브쿼리 비교 연산자르 사용하는것은 불가능
+
+### 📑 서브쿼리를 사용시 주의사항
+- 서브쿼리를 괄호로 감싸서 사용한다.
+- 서브쿼리는 단일 행 또는 복수행 비교 연산자와 함께 사용 가능하다.
+- 단일행 비교 연산자는 서브쿼리의 결과가 반드시 1건 이하이어야 하고 복수행 비교 연산자는 서브쿼리의 결과 건수와 상관없다.
+- 서브쿼리에서는 ORDER BY를 사용하지 못한다.
+    - ORDER BY 절은 SELECT 절에서 오직 한개만 올 수 있기 때문에 메인쿼리의 마지막 문장에 위치해야 한다.
+  
+#### SELECT 절에 서브쿼리 - 스칼라 서브쿼리
+    - 이러한 형태의 서브쿼리는 JOIN으로 동일한 결과를 추출할 수도 있다.
+    
+#### FROM 절에서 서브쿼리 - 인라인뷰
+    - FROM 절의 서브쿼리는 동적 뷰 라고도 하며, SQL 문장 중 테이블 명이 올 수 있는 곳에서 사용할 수 있다.
+    
+
+### 📑 뷰
+#### 뷰 생성 - CREATE VIEW 뷰이름
+#### 뷰 삭제 - DROP VIEW 뷰이름
+#### 뷰 사용의 장점
+- `독립성`: 테이블 구조가 변경되어도 뷰를 사용하는 응용 프로그램은 변경하지 않아도 된다.
+- `편리성`: 복잡한 질의를 뷰로 생성함으로써 관련 질의를 단순하게 작성할 수 있다. 또한 해당 형태의 SQL문을 자주 사용할때 뷰를 이용하면 편리하게 사용할 수 있다.
+- `보안성`: 직원의 급여정보와 같이 숨기고 싶은 정보가 존재한다면, 뷰를 생성할때 해당 칼럼을 빼고 생성함으로써 사용자에게 정보를 감출 수 있다.
+
+#### ROLLUP
+-  Subtotal을 생성하기 위해 사용
+- Grouping Columns의 수를 N이락 했을때 N+1 level의 Subtotal이 생성
+- 인수 순서에 주의
+
+```
+ROLLUP(A, B)
+(A, B)
+(A, NULL)
+(NULL, NULL)
+
+= GROPUING SETS((A, B), A, ())
+```
+
+#### CUBE
+- 결합 가능한 모든 값에 대하여 다차원 집계를 생성.
+- ROLLUP에 비해 시스템 부하 심함
+- 2^N
+
+```
+CUBE(A, B)
+(A, B)
+(A, NULL)
+(NULL, B)
+(NULL, NULL)
+
+= GROPUING SETS((A, B), A, B, ())
+```
+
+#### GROUP BY
+- GROUP BY 기준이 되는 칼럼의 값이 NULL이면 1 리턴, 아니면 0 리턴.
+
+💡
+- 일반 그룹 함수를 사용하여 CUBE, GROUPING SETS, ROLLUP와 같은 그룹 함수와 동일한 결과를 추출할 수 있다.
+- GROUPING SETS 함수의 경우에는 함수의 인자로 주어진 칼럼의 순서에 따라 결과가 달라지지 않는다.
+    - ROLLUP의 경우 달라짐.
+    
+### 📑 윈도우 함수
+- Partition과 Group by 구문은 의미적으로 유사하다.
+- Partition 구문이 없으면 전체 집합을 하나의 Partition으로 정의한 것과 동일하다.
+- 그룹함수 처리로 인해 결과 건수가 줄어든다.
+- 윈도우 함수 적용 범위는 Partition을 넘을 수 없다.
+
+### 📑 순위 함수
+#### RANK
+- ORDER BY를 포함한 QUERY 문에서 측정 항목에 대한 순위를 구하는 함수이며 `동일한 값에 대해서는 동일한 순위를 부여하게 된다.`
+- 1, 1, 3, 4, 4
+
+#### DENSE_RANK
+- 동일한 순위를 하나의 건수로 취급.
+- 1, 1, 2, 3, 3
+
+#### ROW_NUMBER
+- 동일한 값이라도 고유한 순위를 부여한다.
+- 1, 2, 3, 4, 5
+
+### 그냥 외우기
+#### GRANT
+- DBMS에 생성된 USER와 다양한 권한들 사이에서 중개 역할을 할 수 있도록 DBMS에서는 ROLE을 제공한다. 이러한 ROLE을 DBMS USER에게 부여하기 위한 명령
+#### REVOKE
+- ROLE을 회수하기 위한 명령어
+
+#### ROLE - 시스템 및 오브젝트 권한을 모아둔것
+- DBMS 사용자를 새엇ㅇ하면 기본적으로 많은 권한을 부여해야 한다.
+- 많은 DBMS에서는 DBMS 관리자가 사용자별로 권한을 관리해야 하는 부담과 복잡함을 줄이기 위하여 다양한 권한을 그룹으로 묶어 관리할 수 있도록 사용자와 권한 사이에서 중개 역할을 수행하는 ROLE 제공
+
+#### PL/SQL의 특징
+- PL/SQL은 Block 구조로 되어있어 각 기능별로 모듈화가 가능하다.
+- 변수, 상수 등을 선언하여 SQL 문장 간 값을 교환한다.
+    - 변수, 상수 등을 사용하여 일반 SQL 문장을 실행할 때 WHERE절의 조건 등으로 대입가능.
+- IF, LOOP 등의 절차형 언어를 사용하여 절차적인 프로그램이 가능하도록 한다.
+- DBMS 정의 에러나 사용자 정의 에러를 정의하여 사용할 수 있다.
+- PL/SQL 은 Oracle 에 내장되어 있으므로 Oracle과 PL/SQL을 지원하는 어떤 서버라도 프로그램을 옮길 수 있다.
+- PL/SQL은 응용 프로그램의 성능을 향상시킨다.
+- PL/SQL은 여러 SQL 문장을 Block으로 묶고 한번에 Block 전부를 서버로 보내기 때문에 통신량을 줄일 수 있다.
+- Procedure, User Defined Function, Trigger 객체를 PL/SQL로 작성할 수 있다.
+- Procedure 내부에 작성된 절차적 코드는 PL/SQL 엔젠이 처리하고 일반적인 SQL 문장은 SQL 실행기가 처리한다.
+- Dynamic SQL 또는 DDL의 실행을 위해서 PL/SQL 에서는 EXEUTE IMMEDIATE를 사용!.
+
+#### Trigger
+- 데이터베이스에 의해서 자동으로 호출되고 수행된다.
+- 특정 테이블에 대해서 INSERT, UPDATE, EDLETE 문이 수행되었을때 호출되도록 정의할 수 있따.
+- Trigger은 TCL을 이용하여 트랜잭션을 제어할 수 없다.
+- Trigger는 데이터베이스에 로그인하는 작업에도 정의할 수 있따.
+- 특정한 테이블에 INSERT, UPDATE, DELETE와 같은 DML 문이 수행 되었을때, 데이터베이스에서 자동으로 동작하도록 작성된 프로그램으로 가장 적절.
+
+#### 프로시저와 트리거의 차이
+![image](https://user-images.githubusercontent.com/87464750/188268540-4912f2c0-0891-46f4-894f-82210573d384.png)
 
  </div>
 </details>
