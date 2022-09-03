@@ -571,7 +571,7 @@ FROM DERT;
 
 ![image](https://user-images.githubusercontent.com/87464750/187027032-597f54be-8889-4816-805b-2982a01a6a8b.png)
 
-###📑 GROUP BY절과 HAVING 절의 특성
+### 📑 GROUP BY절과 HAVING 절의 특성
 - GROUP BY절을 통해 소그룹별 기준을 정한 후, SELECT 절에 집계 함수를 사용한다.
 - 집계 함수의 통계 정보는 NULL 값을 가진 행을 제외하고 수행한다.
 - GROUP BY 절에서는 SELECT 절과는 달리 ALIAS 명을 사용할 수 없다.
