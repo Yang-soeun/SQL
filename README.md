@@ -486,8 +486,6 @@ UPDATE BOARD SET USE_YN = 'N' WHERE BOARD_ID = '1';
     - 비교 칼러명
     
 ### 📑 연산자
-#### 우선순위
-<img src="https://user-images.githubusercontent.com/87464750/186918511-4a28a253-7997-4fdb-89bf-e4919495ca33.png width="700" height="300"/>
 
 #### NULL 연산
 - NULL값과의 연산은(+,-,*,/ 등)은 NULL값을 리턴
