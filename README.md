@@ -770,8 +770,7 @@ CUBE(A, B)
 #### ROW_NUMBER
 - 동일한 값이라도 고유한 순위를 부여한다.
 - 1, 2, 3, 4, 5
-
-### 그냥 외우기
+  
 #### GRANT
 - DBMS에 생성된 USER와 다양한 권한들 사이에서 중개 역할을 할 수 있도록 DBMS에서는 ROLE을 제공한다. 이러한 ROLE을 DBMS USER에게 부여하기 위한 명령
 #### REVOKE
