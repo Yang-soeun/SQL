@@ -1,4 +1,4 @@
--- ÀÌ°É ¼³Á¤ÇØ¾ß µð¹ö±ë¿ë DBMS_OUTPUTÀ» »ç¿ëÇÒ ¼ö ÀÖÀ½
+-- ì´ê±¸ ì„¤ì •í•´ì•¼ ë””ë²„ê¹…ìš© DBMS_OUTPUTì„ ì‚¬ìš©í•  ìˆ˜ ìžˆìŒ
 SET SERVEROUTPUT ON 
 DECLARE 
   emp_rec   emp%ROWTYPE ;
@@ -20,7 +20,7 @@ BEGIN
   FROM emp_sum
   WHERE deptno = emp_rec.deptno ; 
 
-  DBMS_OUTPUT.PUT_LINE ( 'SUM Salary : ' || sum_rec.sum_sal ) ; -- µð¹ö±ë ¿ë
+  DBMS_OUTPUT.PUT_LINE ( 'SUM Salary : ' || sum_rec.sum_sal ) ; -- ë””ë²„ê¹… ìš©
 
 END ;
 /
@@ -54,7 +54,7 @@ END ;
 SET SERVEROUTPUT ON
 EXECUTE delete_emp (7788)
 
--- º¯¼ö ¼±¾ð
+-- ë³€ìˆ˜ ì„ ì–¸
 SET SERVEROUTPUT ON
 DECLARE
   v_hiredate 		DATE ;
@@ -85,7 +85,7 @@ BEGIN
   UPDATE emp 
   SET sal = 4000 
   WHERE empno = 7788 ; 
-  DBMS_OUTPUT.PUT_LINE ( SQL%ROWCOUNT || ' rows updated') ; -- ¾Ï½ÃÀû Ä¿¼­ÀÇ ¼Ó¼º(SQL%ROWCOUNT), ¿µÇâ¹ÞÀº ÇàÀÇ °Ç¼ö¸¦ ¾òÀ» ¼ö ÀÖÀ½
+  DBMS_OUTPUT.PUT_LINE ( SQL%ROWCOUNT || ' rows updated') ; -- ì•”ì‹œì  ì»¤ì„œì˜ ì†ì„±(SQL%ROWCOUNT), ì˜í–¥ë°›ì€ í–‰ì˜ ê±´ìˆ˜ë¥¼ ì–»ì„ ìˆ˜ ìžˆìŒ
 
   DELETE emp 
   WHERE deptno = 10 ; 
@@ -95,7 +95,7 @@ END ;
 
 ROLLBACK ;
 
--- select ¹®
+-- select ë¬¸
 SET SERVEROUTPUT ON 
 DECLARE 
    v_ename	VARCHAR2(10) ;  
@@ -129,14 +129,14 @@ DECLARE
 BEGIN 
    SELECT ename, sal INTO v_ename, v_sal 
    FROM emp 
-   WHERE deptno = 1111 ; -- ¾ø´Â °æ¿ì ¿¹¿Ü ¹ß»ý
+   WHERE deptno = 1111 ; -- ì—†ëŠ” ê²½ìš° ì˜ˆì™¸ ë°œìƒ
 
    DBMS_OUTPUT.PUT_LINE ( v_ename || ' : ' || v_sal ) ; 
 END ;
 /
 
 
--- IF ¹®
+-- IF ë¬¸
 SET SERVEROUTPUT ON
 DECLARE
   v_myage	NUMBER := 10 ;
@@ -147,7 +147,7 @@ BEGIN
 END;
 /
 
--- LOOP¹®
+-- LOOPë¬¸
 SET SERVEROUTPUT ON
 DECLARE
   v_count	NUMBER(2) := 1 ;
@@ -168,8 +168,8 @@ BEGIN
 END ;
 /
 
--- Á¶ÇÕ µ¥ÀÌÅÍ À¯Çü
--- %ROWTYPE »ç¿ë
+-- ì¡°í•© ë°ì´í„° ìœ í˜•
+-- %ROWTYPE ì‚¬ìš©
 SET SERVEROUTPUT ON 
 DECLARE 
   emp_rec	emp%ROWTYPE ; 
@@ -197,7 +197,7 @@ BEGIN
 END ;
 /
 
--- Record Type »ç¿ë
+-- Record Type ì‚¬ìš©
 CREATE TABLE copy_emp 
   AS 
   SELECT * FROM emp 
