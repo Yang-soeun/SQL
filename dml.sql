@@ -11,14 +11,14 @@ select * from test_1;
 
 insert into test_1(id, name) values(14, 'test99');
 
--- ¾Ï½ÃÀû null
+-- ì•”ì‹œì  null
 insert into test_1(id) values(15);
 select * from test_1;
 
 insert into test_1(id, name) values(&test_id, '&test_name');
 select * from test_1;
 
--- Ä¡È¯ º¯¼ö
+-- ì¹˜í™˜ ë³€ìˆ˜
 select employee_id, last_name
 from employees
 where employee_id = &employee_num;
@@ -33,7 +33,7 @@ select employee_id, last_name, &col_name
 from employees
 order by &col_name;
 
--- define : && µ¿ÀÏ
+-- define : && ë™ì¼
 define employee_num = 200
 select employee_id, last_name
 from employees
@@ -45,7 +45,7 @@ from employees
 where employee_id = &employee_num;
 
 create table copy_dept
-as select * from departments; -- Å×ÀÌºí º¹»ç
+as select * from departments; -- í…Œì´ë¸” ë³µì‚¬
 select * from copy_dept;
 
 -- insert
@@ -54,21 +54,21 @@ department_name, manager_id, location_id)
 values(770, 'Public Relations', 100, 1700);
 select * from copy_dept;
 
--- ¾Ï½ÃÀû null
+-- ì•”ì‹œì  null
 insert into copy_dept(department_id, department_name) values(330, 'Purchasing');
 
--- ¸í½ÃÀû null
+-- ëª…ì‹œì  null
 insert into copy_dept values(1100, 'Finance', null, null);
 
--- character typeÀÌ³ª data typeÀÎ °æ¿ì ''(empty string) -> null·Î ÀÎ½ÄÇÔ
+-- character typeì´ë‚˜ data typeì¸ ê²½ìš° ''(empty string) -> nullë¡œ ì¸ì‹í•¨
 insert into copy_dept
 values(1200, '', null, null);
 
--- Å×ÀÌºí »èÁ¦
+-- í…Œì´ë¸” ì‚­ì œ
 drop table test_1;
 
 create table copy_emp
-as select * from emp where 1 = 2; -- Å×ÀÌºí ±¸Á¶´Â ÇÊ¿äÇÑµ¥ µ¥ÀÌÅÍ´Â ÇÊ¿ä¾ø´Â °æ¿ì ÀÌ·± ¹æ½ÄÀ» »ç¿ëÇÔ
+as select * from emp where 1 = 2; -- í…Œì´ë¸” êµ¬ì¡°ëŠ” í•„ìš”í•œë° ë°ì´í„°ëŠ” í•„ìš”ì—†ëŠ” ê²½ìš° ì´ëŸ° ë°©ì‹ì„ ì‚¬ìš©í•¨
 
 insert into copy_emp
 select * from emp;
@@ -78,7 +78,7 @@ update copy_emp
 set sal = 50
 where empno = 7788;
 
--- where Àı »ı·« - ¸ğµç ÇàÀÌ ¾÷µ¥ÀÌÆ® µÊ
+-- where ì ˆ ìƒëµ - ëª¨ë“  í–‰ì´ ì—…ë°ì´íŠ¸ ë¨
 update copy_emp
 set sal = 50;
 
@@ -86,7 +86,7 @@ update copy_emp
 set job = 'CLERK'
 where empno = 7788;
 
--- ¼­ºêÄõ¸®¸¦ ÀÌ¿ëÇÑ ¾÷µ¥ÀÌÆ®
+-- ì„œë¸Œì¿¼ë¦¬ë¥¼ ì´ìš©í•œ ì—…ë°ì´íŠ¸
 update copy_emp
 set deptno = (select deptno from emp where empno = 7876);
 
@@ -101,11 +101,11 @@ where department_name = 'Public Relations';
 select * from copy_dept
 where department_name = 'Public Realtions';
 
-delete from copy_dept;-- where ÀıÀÌ ¾ø´Â °æ¿ì ¸ğµç Çà »èÁ¦
+delete from copy_dept;-- where ì ˆì´ ì—†ëŠ” ê²½ìš° ëª¨ë“  í–‰ ì‚­ì œ
 select * from copy_dept;
 
--- ´Ù¸¥ table±â¹İ(¼­ºêÄõ¸® ÀÌ¿ë) »èÁ¦
--- ºÎ¼­ ÀÌ¸§¿¡ ¹®ÀÚ¿­ saleÀÌ Æ÷ÇÔµÈ ºÎ¼­¿¡¼­ ±Ù¹«ÇÏ´Â ¸ğµç »ç¿øÀ» »èÁ¦
+-- ë‹¤ë¥¸ tableê¸°ë°˜(ì„œë¸Œì¿¼ë¦¬ ì´ìš©) ì‚­ì œ
+-- ë¶€ì„œ ì´ë¦„ì— ë¬¸ìì—´ saleì´ í¬í•¨ëœ ë¶€ì„œì—ì„œ ê·¼ë¬´í•˜ëŠ” ëª¨ë“  ì‚¬ì›ì„ ì‚­ì œ
 delete from copy_emp
 where deptno in (select deptno from dept where dname like '%SALE%');
 
