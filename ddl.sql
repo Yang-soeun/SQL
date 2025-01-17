@@ -1,6 +1,6 @@
 -- DDL
 create table copy2_emp
-as select empno, sal+comm as revenue from emp; --> +- ÀÌ·± ¿¬»êÀÚ´Â Ä®·³ ÀÌ¸§À¸·Î´Â ºÒ°¡´ÉÇÔ, alias¸¦ »ç¿ëÇØ¼­ ÇØ¾ßÇÔ
+as select empno, sal+comm as revenue from emp; --> +- ì´ëŸ° ì—°ì‚°ìëŠ” ì¹¼ëŸ¼ ì´ë¦„ìœ¼ë¡œëŠ” ë¶ˆê°€ëŠ¥í•¨, aliasë¥¼ ì‚¬ìš©í•´ì„œ í•´ì•¼í•¨
 
 select * from copy2_emp;
 
@@ -12,24 +12,24 @@ select table_name, column_name, data_type, data_default
 from user_tab_columns
 where table_name = 'HIRE_DATES';
 
--- hire date ¿­¿¡ null »ğÀÔ
+-- hire date ì—´ì— null ì‚½ì…
 insert into hire_dates values(45, null);
 
--- hire date ¿­¿¡ sysdate »ğÀÔ
+-- hire date ì—´ì— sysdate ì‚½ì…
 insert into hire_dates(id) values(35);
 select * from hire_dates;
 
 -- data type
 /*
-CHAR - °íÁ¤ ±æÀÌ ¹®ÀÚ(ÃÖ´ë 2,000byte)
-VARCHAR - °¡º¯ ±æÀÌ ¹®ÀÚ(ÃÖ´ë 4,000byte)
-CLOB - °¡º¯ ±æÀÌ ¹®ÀÚ(ÃÖ´ë(4GB -1) * db_block_size)
-NUMBER(p, s) - ¼ıÀÚ(ÀÚ¸´¼ö, ¼Ò¼öÁ¡ ÀÚ¸´¼ö)
-DATE - ³¯Â¥ ¹× ½Ã°£ (YYYY/MM/DD HH:MI:SS)
+CHAR - ê³ ì • ê¸¸ì´ ë¬¸ì(ìµœëŒ€ 2,000byte)
+VARCHAR - ê°€ë³€ ê¸¸ì´ ë¬¸ì(ìµœëŒ€ 4,000byte)
+CLOB - ê°€ë³€ ê¸¸ì´ ë¬¸ì(ìµœëŒ€(4GB -1) * db_block_size)
+NUMBER(p, s) - ìˆ«ì(ìë¦¿ìˆ˜, ì†Œìˆ˜ì  ìë¦¿ìˆ˜)
+DATE - ë‚ ì§œ ë° ì‹œê°„ (YYYY/MM/DD HH:MI:SS)
 */
 
--- 1.1.1 char Å¸ÀÔ ÁÖÀÇÁ¡
--- char´Â Á¶°ÇÀ» ºñ±³ÇÒ °æ¿ì °ø¹é ¹®ÀÚ¸¦ ºÙ¿© ¾çÂÊ °ªÀ» ´õ ±ä ÂÊ°ú µ¿ÀÏÇÏ°Ô ÇÑ´Ù.
+-- 1.1.1 char íƒ€ì… ì£¼ì˜ì 
+-- charëŠ” ì¡°ê±´ì„ ë¹„êµí•  ê²½ìš° ê³µë°± ë¬¸ìë¥¼ ë¶™ì—¬ ì–‘ìª½ ê°’ì„ ë” ê¸´ ìª½ê³¼ ë™ì¼í•˜ê²Œ í•œë‹¤.
 create table chr_typ(c1 char(5), c2 varchar2(5));
 insert into chr_typ values('ABC', 'ABC');
 select c1, dump(c2), c2, dump(c2) from chr_typ;
@@ -38,45 +38,45 @@ select * from chr_typ
 where c1 = 'ABC';
 
 select * from chr_typ
-where c1 = 'ABC  '; --°ø¹é 2°³: °á°ú ³ª¿È
+where c1 = 'ABC  '; --ê³µë°± 2ê°œ: ê²°ê³¼ ë‚˜ì˜´
 
 select * from chr_typ
-where c1 = 'ABC     '; -- °ø¹é 5°³: °á°ú ³ª¿È
+where c1 = 'ABC     '; -- ê³µë°± 5ê°œ: ê²°ê³¼ ë‚˜ì˜´
 
 select * from chr_typ
 where c2 = 'ABC';
 
 select * from chr_typ
-where c2 = 'ABC  '; --°ø¹é 2°³: °á°ú ¾È³ª¿È
+where c2 = 'ABC  '; --ê³µë°± 2ê°œ: ê²°ê³¼ ì•ˆë‚˜ì˜´
 
 select * from chr_typ
-where c2 = 'ABC     '; -- °ø¹é 5°³: °á°ú ¾È³ª¿È
+where c2 = 'ABC     '; -- ê³µë°± 5ê°œ: ê²°ê³¼ ì•ˆë‚˜ì˜´
 
 create table num_typ(
 c1 number,
 c2 number(4, 2),
 c3 number(4),
 c4 number(2, 4),
-c5 number(4, -1) -- ÀüÃ¼ 4ÀÚ¸® ÀÎµ¥ -1 = 10ÀÇ ÀÚ¸® -> ÀÇ¹Ì´Â 10ÀÇÀÚ¸®±îÁö¸¸ ³ª¿Ã ¼ö ÀÖ°Ô
+c5 number(4, -1) -- ì „ì²´ 4ìë¦¬ ì¸ë° -1 = 10ì˜ ìë¦¬ -> ì˜ë¯¸ëŠ” 10ì˜ìë¦¬ê¹Œì§€ë§Œ ë‚˜ì˜¬ ìˆ˜ ìˆê²Œ
 );
 
 insert into num_typ(c2, c3, c4, c5) values(0,0,0,0);
 select * from num_typ;
 
 insert into num_typ(c2) values(12.34567);
-insert into num_typ(c2) values(99.999); --¹İ¿Ã¸² ÇÏ¸é ³Ñ¾î°¡¼­ ¾È‰Î
+insert into num_typ(c2) values(99.999); --ë°˜ì˜¬ë¦¼ í•˜ë©´ ë„˜ì–´ê°€ì„œ ì•ˆÂ‰
 
 insert into num_typ(c3) values(12.34566);
 insert into num_typ(c3) values(12);
 insert into num_typ(c3) values(9999.34567);
-insert into num_typ(c3) values(99999); -- ÀÌ°Å ¾ÈµÊ
+insert into num_typ(c3) values(99999); -- ì´ê±° ì•ˆë¨
 
 insert into num_typ(c4) values(12.34566);
 insert into num_typ(c4) values(12);
 insert into num_typ(c4) values(9999.34567);
 insert into num_typ(c4) values(0.1111);
-insert into num_typ(c4) values(0.0099); -- ÀÌ°Å¸¸ µÊ
-insert into num_typ(c4) values(0.0123); -- ¼ıÀÚ°¡ 3°³¶ó¼­ ¾ÈµÊ
+insert into num_typ(c4) values(0.0099); -- ì´ê±°ë§Œ ë¨
+insert into num_typ(c4) values(0.0123); -- ìˆ«ìê°€ 3ê°œë¼ì„œ ì•ˆë¨
 insert into num_typ(c4) values(0.004);
 insert into num_typ(c4) values(0.1);
 
@@ -86,7 +86,7 @@ insert into num_typ(c5) values(12);
 insert into num_typ(c5) values(9999.34567);
 insert into num_typ(c5) values(0.1111);
 insert into num_typ(c5) values(0.0099); 
-insert into num_typ(c5) values(99999); --ÀÌ°Å ¾ÈµÊ
+insert into num_typ(c5) values(99999); --ì´ê±° ì•ˆë¨
 insert into num_typ(c5) values(0.004);
 insert into num_typ(c5) values(0.1);
 
@@ -96,8 +96,8 @@ SELECT c5 FROM num_typ ;
 rollback;
 
 /* date type */
--- date type : ¼¼±â, ¿¬µµ, ¿ù, ÀÏ, ½Ã, ºĞ, ÃÊ 7°¡Áö °ª
--- timestamp type : dateÈ®ÀåÇü, ¼Ò¼öÁ¡ÀÌÇÏ ÃÊÀÇ Á¤¹ĞÇÑ ½Ã°£ÀúÀå
+-- date type : ì„¸ê¸°, ì—°ë„, ì›”, ì¼, ì‹œ, ë¶„, ì´ˆ 7ê°€ì§€ ê°’
+-- timestamp type : dateí™•ì¥í˜•, ì†Œìˆ˜ì ì´í•˜ ì´ˆì˜ ì •ë°€í•œ ì‹œê°„ì €ì¥
 
 CREATE TABLE dt_typ
 (c1 DATE) ;
@@ -105,26 +105,26 @@ CREATE TABLE dt_typ
 INSERT INTO dt_typ VALUES ( SYSDATE ) ;
 
 ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY/MM/DD HH24:MI:SS' ;
-SELECT * FROM dt_typ ; -- 'YYYY/MM/DD HH24:MI:SS' Æ÷¸ËÀ¸·Î Ãâ·Â
+SELECT * FROM dt_typ ; -- 'YYYY/MM/DD HH24:MI:SS' í¬ë§·ìœ¼ë¡œ ì¶œë ¥
 -- 2024/07/03 16:18:38
 ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY/MM/DD' ;
-SELECT * FROM dt_typ ; -- 'YYYY/MM/DD' Æ÷¸ËÀ¸·Î Ãâ·Â
+SELECT * FROM dt_typ ; -- 'YYYY/MM/DD' í¬ë§·ìœ¼ë¡œ ì¶œë ¥
 
 SELECT DUMP(c1)
 FROM dt_typ ;
 
--- ½ÇÁ¦ÀúÀåµÈ ³¯Â¥Å¸ÀÔÀº ½ÃºĞÃÊ±îÁö
+-- ì‹¤ì œì €ì¥ëœ ë‚ ì§œíƒ€ì…ì€ ì‹œë¶„ì´ˆê¹Œì§€
 ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY/MM/DD';
 
--- sysdate ÇöÀç³¯Â¥°ªÀ¸·Î ºñ±³, ½ÃºĞÃÊ´Â 00:00:00À¸·Î ºñ±³µÇ¹Ç·Î no data
+-- sysdate í˜„ì¬ë‚ ì§œê°’ìœ¼ë¡œ ë¹„êµ, ì‹œë¶„ì´ˆëŠ” 00:00:00ìœ¼ë¡œ ë¹„êµë˜ë¯€ë¡œ no data
 SELECT * FROM dt_typ
 WHERE c1 = TO_DATE('2024/07/03','YYYY/MM/DD') ;
 
--- sysdate ÇöÀç³¯Â¥°ª ½ÃºĞÃÊ±îÁö µ¿ÀÏÇØ¾ßÇÔ
+-- sysdate í˜„ì¬ë‚ ì§œê°’ ì‹œë¶„ì´ˆê¹Œì§€ ë™ì¼í•´ì•¼í•¨
 SELECT * FROM dt_typ
 WHERE c1 = TO_DATE('2024/07/03 16:18:38','YYYY/MM/DD HH24:MI:SS');
 
--- ÀúÀåµÈ ½ÃºĞÃÊ°ª ¸ğ¸¦°æ¿ì to_charÀÌ¿ëÇÏ°Å³ª betweenÀ¸·Î °Ë»ö°¡´É
+-- ì €ì¥ëœ ì‹œë¶„ì´ˆê°’ ëª¨ë¥¼ê²½ìš° to_charì´ìš©í•˜ê±°ë‚˜ betweenìœ¼ë¡œ ê²€ìƒ‰ê°€ëŠ¥
 select * from dt_typ
 where to_char(c1, 'YYYY/MM/DD') = '2024/07/03';
 
